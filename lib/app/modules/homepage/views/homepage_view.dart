@@ -9,16 +9,15 @@ class HomepageView extends GetView<HomepageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomepageView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'HomepageView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
+        body: GridView.builder(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+            itemBuilder: (context, index) {
+              return Container(
+                child: Center(
+                  child: Text('Index $index'),
+                ),
+              );
+            }));
   }
 }

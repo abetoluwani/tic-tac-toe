@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tictactoe/app/theme/theme.dart';
 import 'app/modules/splashscreen/bindings/splashscreen_binding.dart';
 import 'app/routes/app_pages.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,11 +19,13 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, _) {
           return GetMaterialApp(
-            getPages: AppPages.routes,
-            debugShowCheckedModeBanner: false,
-            initialBinding: SplashscreenBinding(),
-            initialRoute: '/splashscreen',
-          );
+          debugShowCheckedModeBanner: false,
+          initialRoute: AppPages.INITIAL,
+          initialBinding: SplashscreenBinding(),
+          getPages: AppPages.routes,
+          darkTheme: AppTheme.darkTheme,
+          theme: AppTheme.theme,
+        );
         });
   }
 }
