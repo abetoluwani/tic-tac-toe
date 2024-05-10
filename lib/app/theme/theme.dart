@@ -6,7 +6,7 @@ import 'colors.dart';
 class AppTheme {
   static ThemeData get theme {
     return ThemeData(
-        scaffoldBackgroundColor: AppColors.white,
+        scaffoldBackgroundColor: Colors.grey[800],
         dialogBackgroundColor: AppColors.white,
         dialogTheme: const DialogTheme(
           backgroundColor: AppColors.white,
@@ -26,7 +26,7 @@ class AppTheme {
 
   static ThemeData get darkTheme {
     return ThemeData(
-        scaffoldBackgroundColor: AppColors.white,
+        scaffoldBackgroundColor: Colors.grey[800],
         dialogBackgroundColor: AppColors.white,
         dialogTheme: const DialogTheme(
           backgroundColor: AppColors.white,

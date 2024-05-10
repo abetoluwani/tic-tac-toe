@@ -9,10 +9,6 @@ class SplashscreenView extends GetView<SplashscreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashscreenView'),
-        centerTitle: true,
-      ),
       body: const Center(
         child: Text(
           'SplashscreenView is working',

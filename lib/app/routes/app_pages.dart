@@ -15,7 +15,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOMEPAGE,
-      page: () => const HomepageView(),
+      page: () => HomepageView(),
       binding: HomepageBinding(),
     ),
     GetPage(
