@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:tictactoe/app/widgets/appbutton.dart';
 import 'package:tictactoe/app/widgets/apptext.dart';
 
 // ignore: must_be_immutable
@@ -7,6 +8,8 @@ import 'package:tictactoe/app/widgets/apptext.dart';
 class HomepageController extends GetxController {
   List<String> displayxando = ['', '', '', '', '', '', '', '', ''];
   final count = 0.obs;
+  int xscore = 0;
+  int oscore = 0;
 
   void checkwinner() {
     if (displayxando[0] == displayxando[1] &&
@@ -62,13 +65,37 @@ class HomepageController extends GetxController {
     // }
   }
 
-  void showdialog(String Winner) {
+  void showdialog(String winner) {
     showDialog(
+        barrierDismissible: false,
         context: Get.context!,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: BigAppText('Winner is $Winner'),
+            title: BigAppText(
+              'Winner is $winner',
+              textAlign: TextAlign.center,
+            ),
+            actions: [
+              AppElevatedButton(
+                  title: 'Play Again',
+                  onPressed: () {
+                    clearboard();
+                    Get.back();
+                  }),
+            ],
           );
         });
+    if (winner == 'X') {
+      xscore++;
+    } else {
+      oscore++;
+    }
+    clearboard();
+  }
+
+  void clearboard() {
+    for (int i = 0; i < 9; i++) {
+      displayxando[i] = '';
+    }
   }
 }
