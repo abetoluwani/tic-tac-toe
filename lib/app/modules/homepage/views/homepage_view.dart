@@ -15,7 +15,22 @@ class HomepageView extends StatefulWidget {
 }
 
 class _HomepageViewState extends State<HomepageView> {
-  List<String> displayxando = ['', '', '', '', '', '', '', '', ''];
+  final HomepageController controller = Get.put(HomepageController());
+  bool firstperson = true; // the first player is O
+
+  void tapped(int index) {
+    setState(() {
+      //displayxando = displayxando == 'X' ? 'O' : 'X';
+      if (firstperson) {
+        // displayxando[index] = 'X';
+        controller.displayxando[index] = 'X';
+      } else {
+        controller.displayxando[index] = 'O';
+      }
+      firstperson = !firstperson;
+      controller.checkwinner();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +39,8 @@ class _HomepageViewState extends State<HomepageView> {
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
           itemCount: 9,
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
@@ -36,8 +51,8 @@ class _HomepageViewState extends State<HomepageView> {
                   border: Border.all(color: AppColors.grey, width: 0.5),
                 ),
                 child: Center(
-                  child:
-                      BigAppText(displayxando[index], color: AppColors.white),
+                  child: BigAppText(controller.displayxando[index],
+                      color: AppColors.white),
                 ),
               ),
             );
@@ -45,12 +60,5 @@ class _HomepageViewState extends State<HomepageView> {
         ),
       ),
     );
-  }
-
-  void tapped(int index) {
-    setState(() {
-      //displayxando = displayxando == 'X' ? 'O' : 'X';
-      displayxando[index] = 'X';
-    });
   }
 }
