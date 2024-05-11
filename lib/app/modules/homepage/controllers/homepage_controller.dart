@@ -10,6 +10,7 @@ class HomepageController extends GetxController {
   final count = 0.obs;
   int xscore = 0;
   int oscore = 0;
+  int filledboxes = 0;
 
   void checkwinner() {
     if (displayxando[0] == displayxando[1] &&
@@ -58,6 +59,8 @@ class HomepageController extends GetxController {
         displayxando[2] == displayxando[6] &&
         displayxando[2] != '') {
       showdialog(displayxando[2]);
+    } else if (filledboxes == 9) {
+      showdrawdialog();
     }
 
     // if (!displayxando.contains('')) {
@@ -93,9 +96,30 @@ class HomepageController extends GetxController {
     clearboard();
   }
 
-  void clearboard() {
+  void clearboard() async {
     for (int i = 0; i < 9; i++) {
       displayxando[i] = '';
     }
+    filledboxes = 0;
+  }
+
+  void showdrawdialog() {
+    showDialog(
+        barrierDismissible: false,
+        context: Get.context!,
+        builder: (BuildContext context) {
+          return AlertDialog(
+              title: BigAppText(
+                'DRAW',
+              ),
+              actions: [
+                AppElevatedButton(
+                    title: 'Play Again',
+                    onPressed: () {
+                      clearboard();
+                      Get.back();
+                    })
+              ]);
+        });
   }
 }

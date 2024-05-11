@@ -23,19 +23,16 @@ class _HomepageViewState extends State<HomepageView> {
     setState(() {
       //displayxando = displayxando == 'X' ? 'O' : 'X';
       if (firstperson && controller.displayxando[index] == '') {
-        // displayxando[index] = 'X';
         controller.displayxando[index] = 'X';
+        controller.filledboxes++;
       } else if (!firstperson && controller.displayxando[index] == '') {
         controller.displayxando[index] = 'O';
+        controller.filledboxes++;
       }
-      // else {
-      //   controller.displayxando[index] = 'O';
-      // }
       firstperson = !firstperson;
       controller.checkwinner();
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
