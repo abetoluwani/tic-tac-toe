@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:tictactoe/app/theme/colors.dart';
 import 'package:tictactoe/app/widgets/apptext.dart';
-import 'package:tictactoe/app/widgets/space.dart';
 import '../controllers/homepage_controller.dart';
+import 'widgets/socials.dart';
+import 'widgets/topbar.dart';
 
 // ignore: must_be_immutable
 class HomepageView extends StatefulWidget {
@@ -44,55 +44,14 @@ class _HomepageViewState extends State<HomepageView> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
+                flex: 2,
                 child: SizedBox(
                   width: Get.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      BigAppText(
-                        'TIC TAC TOE GAME',
-                        color: AppColors.white,
-                      ),
-                      vSpace(20),
-                      //Score Board
-                      BigAppText(
-                        'Score Board',
-                        color: AppColors.white,
-                      ),
-                      vSpace(20),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Column(
-                              children: [
-                                BigAppText(
-                                  'Player X',
-                                  color: AppColors.white,
-                                ),
-                                vSpace(10),
-                                MedAppText(controller.xscore.toString(),
-                                    color: AppColors.white),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                BigAppText(
-                                  'Player O',
-                                  color: AppColors.white,
-                                ),
-                                vSpace(10),
-                                MedAppText(controller.oscore.toString(),
-                                    color: AppColors.white),
-                              ],
-                            )
-                          ])
-                    ],
-                  ),
+                  child: AppTopBar(controller: controller),
                 ),
               ),
-              vSpace(40),
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: GridView.builder(
                   itemCount: 9,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -115,6 +74,9 @@ class _HomepageViewState extends State<HomepageView> {
                   },
                 ),
               ),
+              const Expanded(
+                child: Socials(),
+              )
             ],
           ),
         ),
